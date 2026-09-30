@@ -91,3 +91,5 @@ public class Main {
         }
     }
 }
+
+//masukin transaction ke queue bisa pake queue.addAll(parameter) 
