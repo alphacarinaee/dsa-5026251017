@@ -1,0 +1,55 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(Main.class.getResourceAsStream("branches.txt"));
+
+        int n = sc.nextInt();
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+
+        int m = sc.nextInt();
+        int[] target = new int[m];
+        for (int i = 0; i < m; i++) {
+            target[i] = sc.nextInt();
+        }
+
+        for (int i = 1; i <= 3; i++) {
+            int key = a[i];
+            int j = i - 1;
+            while (j >= 0 && a[j] < key) {
+                a[j + 1] = a[j];
+                j--;
+            }
+            a[j + 1] = key;
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (i > 0) {
+                System.out.print(" ");
+            }
+            System.out.print(a[i]);
+        }
+        System.out.println();
+
+        for (int i = 0; i < m; i++) {
+            int index = -1;
+            for (int j = 0; j < n; j++) {
+                if (a[j] == target[i]) {
+                    index = j;
+                    break;
+                }
+            }
+
+            if (index != -1) {
+                System.out.println(target[i] + ": FOUND at index " + index);
+            } else {
+                System.out.println(target[i] + ": NOT FOUND");
+            }
+        }
+
+        sc.close();
+    }
+}
